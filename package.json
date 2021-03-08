@@ -1,0 +1,22 @@
+{
+  "name": "api-centric_back",
+  "version": "1.0.0",
+  "description": "cloud-tp WEB2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SP-Sumampow/API-CENTRIC_BACK.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SP-Sumampow/API-CENTRIC_BACK/issues"
+  },
+  "homepage": "https://github.com/SP-Sumampow/API-CENTRIC_BACK#readme",
+  "dependencies": {
+    "firebase": "^8.2.10"
+  }
+}
