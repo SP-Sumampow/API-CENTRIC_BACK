@@ -1,10 +1,14 @@
-
 const login = (req, res) => {
-  res.json('coucou');
+  res.json('login');
+};
+
+const logout = (req, res) => {
+  res.json('logout');
 };
 
 module.exports = {
   init: (app) => {
-    app.get('/', login);
+    app.get('/login', login);
+    app.get('/logout', logout);
   },
 };
