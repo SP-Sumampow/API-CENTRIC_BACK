@@ -1,7 +1,7 @@
 {
   "name": "api-centric_back",
   "version": "1.0.0",
-  "description": "cloud-tp WEB2",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/SP-Sumampow/API-CENTRIC_BACK#readme",
   "dependencies": {
-    "firebase": "^8.2.10"
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.7"
   }
 }
