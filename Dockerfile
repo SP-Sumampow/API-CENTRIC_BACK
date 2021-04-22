@@ -15,8 +15,8 @@ RUN npm install --only=production
 
 # Copy local code to the container image.
 COPY ./src ./
-COPY ./src/firebaseKey.json ./firebaseKey.json
-COPY ./src/firebaseClientKey.json ./firebaseClientKey.json
+COPY ./src/firebaseAdminKey.json ./src/firebaseAdminKey.json
+COPY ./src/firebaseClientKey.json ./src/firebaseClientKey.json
 
 # Run the web service on container startup.
 CMD [ "node", "index.js" ]

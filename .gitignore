@@ -61,10 +61,8 @@ node_modules/
 
 # Yarn Integrity file
 .yarn-integrity
-
-firebaseKey.json
-googleCloudKey.json
-/googleCloudKey.json
-/firebaseKey.json
 .DS_Store
-firebaseClientKey.json
+/src/firebaseAdminKey.json
+/src/firebaseClientKey.json
+firebaseConfig.js
+firebaseKey.json
