@@ -66,3 +66,4 @@ node_modules/
 /src/firebaseClientKey.json
 /keys/.DS_Store
 /keys/googleCloudKey.json
+/src/controller/twiiter.js
