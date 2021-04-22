@@ -2,6 +2,7 @@
 
 const userController = require('./controller/userController');
 const keywordController = require('./controller/keywordController');
+const tweetController = require('./controller/tweetController');
 
 const init = (app) => {
   // user
@@ -12,7 +13,10 @@ const init = (app) => {
 
   //Keyword
   app.post('/keyword', keywordController.postKeyword);
-  app.get('/dataForOneKeyword', keywordController.dataForOneKeyword);
+  app.get('/keyword/:twit', keywordController.dataForOneKeyword);
+
+  //Twit
+  app.get('/tweet/:keyword', tweetController.getTweetFromKeywords);
 
   app.get('/', async (req, res) => {
     res.send('<h1>Projet cloud - Groupe 9 v1.0<h1>')

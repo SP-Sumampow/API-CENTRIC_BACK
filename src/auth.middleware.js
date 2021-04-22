@@ -2,6 +2,7 @@
 const firebase = require('./firebaseConfig');
 require('firebase/auth')
 
+
 const decodeFirebaseIdToken = async (token) => {
   if (!token) {
     return  {
