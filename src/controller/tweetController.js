@@ -4,12 +4,11 @@ const analyzeSentimentUtil = require('../utils/analyzeSentimentUtil')
 const tweetKey = require('../tweetKey');
 const Twit = require('twit');
 const moment = require('moment');
-const { text } = require('express');
 const Tweet = new Twit(tweetKey)
 const NUMBER_OF_TWEETS = 10
 
 
-const getTweetFromKeywords = async (req, res) => {
+const getTweetFromKeyword = async (req, res) => {
 
   const token = req.cookies.token
   console.log(req.cookies)
@@ -41,12 +40,12 @@ const getTweetFromKeywords = async (req, res) => {
         
         switch (textSentimemt) {
             case analyzeSentimentUtil.sentimentEnum.positive:
-                keywordTweetAnalyzes.positive.push(tweet)
+                keywordTweetAnalyzes.positive.push(generateKeywordTweetAnalyze(tweet))
                 break;
             case analyzeSentimentUtil.sentimentEnum.neutral:
                 continue;
             case analyzeSentimentUtil.sentimentEnum.negative:
-                keywordTweetAnalyzes.negative.push(tweet)
+                keywordTweetAnalyzes.negative.push(generateKeywordTweetAnalyze(tweet))
             default:
                 continue;
           }
@@ -55,9 +54,25 @@ const getTweetFromKeywords = async (req, res) => {
    } else {
        res.json(404).json({"error": `No tweet for ${yesterdayDateString}`})
    }
+};
 
+const generateTweetAnalize = (req, res) => {
+    res.json(200).send("coucou")
 };
 
 module.exports = {
-    getTweetFromKeywords,
+    getTweetFromKeyword,
+    generateTweetAnalize
 };
+
+const generateKeywordTweetAnalyze = (tweetExtract) => {
+ return {
+     createdAt: tweetExtract.created_at,
+     tweetUrl: `https://twitter.com/${tweetExtract.user.screen_name}/status/${tweetExtract.id}`,
+     tweet: tweetExtract.text,
+     name: tweetExtract.user.name,
+     location: tweetExtract.user.location,
+     description: tweetExtract.user.description,
+     avatar: tweetExtract.user.profile_image_url_https
+ }
+}

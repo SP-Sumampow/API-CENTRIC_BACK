@@ -1,7 +1,7 @@
 'use strict';
 const authMiddleware = require('../auth.middleware.js');
 const firebase = require('../firebaseConfig');
-
+const admin = require('firebase-admin');
 const postKeyword = async (req, res) => {
   const keyword = req.body.keyword;
     
@@ -20,7 +20,44 @@ const postKeyword = async (req, res) => {
     res.status(400).json({'error': 'keyword not found'});
   }
 
-  console.log("add to firestore the keyword of the user");
+
+
+  const userDoc = await db.collection('users').doc(uid).get()
+  if (userDoc) {
+    const userDocData = userDoc.data()
+    const keywords = userDocData.keywords ?? []
+    let keywordIndex = -1
+    if (keywords) {
+      keywordIndex = keywords.findIndex((keywordSaved) => { keywordSaved === keyword})
+    }
+    const hasKeyword = keywordIndex != -1
+
+    const newKeyword = {
+      dateAdd: Date.now(),
+      name: keyword,
+      sentimentResult: {}
+    }
+
+    if (hasKeyword) {
+      delete keywords[keywordIndex] 
+    } 
+
+    keywords.push(newKeyword)
+
+    await db.collection('users').doc(uid).set({keywords}, {merge: true});
+  
+  }
+  
+
+  // await db.collection('users')
+  // .doc(uid)
+  // .then(function(querySnapshot) {
+  //   console.log(querySnapshot)
+  //   querySnapshot.forEach(function(doc) {
+  //     const data = doc.data()
+  //       console.log(data.keyword)
+  //   });
+  // })
 
 
   res.status(200).json({ "keyword": keyword});

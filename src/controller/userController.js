@@ -80,7 +80,7 @@ const getUser = async (req, res) => {
   const userpayload = await authMiddleware.decodeFirebaseIdToken(token)
   if (userpayload.error) return res.status(400).json({"error": userpayload.error});
 
-  res.cookie('token', null, { expires: new Date(Date.now() + 900000), path: '/', secure: true, httpOnly: true })
+  res.cookie('token', null)
   res.status(200).send("logout");
 };
 
