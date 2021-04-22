@@ -78,3 +78,22 @@ resource "google_cloud_run_service_iam_member" "run_all_users" {
 output "service_url" {
   value = google_cloud_run_service.api_centric_nodejs.status[0].url
 }
+
+resource "google_cloud_scheduler_job" "api-centric-generate-tweet-analyze" {
+  name             = "api-centric-generate-tweet-analyze"
+  description      = "test http job"
+  schedule         = "0 0 * * *"
+  time_zone        = "Europe/Paris"
+  attempt_deadline = "320s"
+
+  depends_on = [google_cloud_run_service.api_centric_nodejs]
+
+  retry_config {
+    retry_count = 1
+  }
+
+  http_target {
+    http_method = "POST"
+    uri         = "${output.service_url}/tweet/generateTweetAnalize"
+  }
+}
