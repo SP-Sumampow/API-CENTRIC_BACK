@@ -64,3 +64,4 @@ node_modules/
 .DS_Store
 /src/firebaseAdminKey.json
 /src/firebaseClientKey.json
+/keys/googleCloudKey.json

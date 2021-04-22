@@ -12,6 +12,7 @@ const init = (app) => {
 
   //Keyword
   app.post('/keyword', keywordController.postKeyword);
+  app.get('/dataForOneKeyword', keywordController.dataForOneKeyword);
 
   app.get('/', async (req, res) => {
     res.send('<h1>Projet cloud - Groupe 9 v1.0<h1>')

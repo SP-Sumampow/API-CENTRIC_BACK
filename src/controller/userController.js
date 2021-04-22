@@ -21,8 +21,8 @@ const signUp = async (req, res) => {
         emailVerified: true,
         password: password,
       })
-      .then(async (userRecord) => {
-        const db = firebase.firestore();
+    .then(async (userRecord) => {
+        const db = firebase.admin.firestore();
         await db.collection('users').doc(userRecord.uid).set({
           email: userRecord.email,
           isSubscribed: false,
@@ -48,12 +48,8 @@ const signIn = async (req, res) => {
     .createCustomToken(uid)
     .then((customToken) => {
 
-      res.writeHead(200, {
-        "Set-Cookie": `token=${customToken}; HttpOnly`,
-        "Access-Control-Allow-Credentials": "true"
-      })
-      .send();
-
+      res.cookie('token', customToken)
+      res.status(200).send("login");
     })
     .catch((error) => {
       console.log('Error creating custom token:', error);
@@ -64,6 +60,9 @@ const signIn = async (req, res) => {
 const getUser = async (req, res) => {
   // authentification
   const token = req.cookies.token
+
+  console.log(req.cookies)
+
   if (!token) return res.status(401).send("cookie not found");
   const userpayload = await authMiddleware.decodeFirebaseIdToken(token)
   if (userpayload.error) return res.status(400).json({"error": userpayload.error});
@@ -81,11 +80,8 @@ const getUser = async (req, res) => {
   const userpayload = await authMiddleware.decodeFirebaseIdToken(token)
   if (userpayload.error) return res.status(400).json({"error": userpayload.error});
 
-  res.writeHead(200, {
-    "Set-Cookie": `token=null; HttpOnly`,
-    "Access-Control-Allow-Credentials": "true"
-  })
-  .send();
+  res.cookie('token', null, { expires: new Date(Date.now() + 900000), path: '/', secure: true, httpOnly: true })
+  res.status(200).send("logout");
 };
 
 
