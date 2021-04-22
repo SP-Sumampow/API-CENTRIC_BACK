@@ -14,7 +14,7 @@ const init = (app) => {
   app.post('/keyword', keywordController.postKeyword);
 
   app.get('/', async (req, res) => {
-    res.send('<h1>Projet cloud - Groupe 9<h1>')
+    res.send('<h1>Projet cloud - Groupe 9 v1.0<h1>')
   });
 };
 

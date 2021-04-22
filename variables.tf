@@ -29,7 +29,7 @@ variable "zone" {
 }
 
 variable "docker-nodejs-image" {
-  default = "eu.gcr.io/api-centric-web2/app-centric-node"
+  default = "eu.gcr.io/api-centric-web2/api-centric-node:latest"
 }
 
 variable "github_repository" {
