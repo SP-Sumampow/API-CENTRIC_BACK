@@ -62,7 +62,7 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
 firebaseKey.json
-.DS_Store
+googleCloudKey.json
+/googleCloudKey.json
+/firebaseKey.json

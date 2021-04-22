@@ -1,27 +1,21 @@
-# Source tutorial
-#https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
-#https://www.youtube.com/watch?v=CsWoMpK3EtE&t=134s
+# Use the official lightweight Node.js 12 image.
+# https://hub.docker.com/_/node
+FROM node:12-slim
 
-FROM node:14
-
-# Create app directory
+# Create and change to the app directory.
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-
-#move the package files on the /usr/src/app which is in ./
+# Copy application dependency manifests to the container image.
+# A wildcard is used to ensure both package.json AND package-lock.json are copied.
+# Copying this separately prevents re-running npm install on every code change.
 COPY package*.json ./
 
-# launch to download package
-RUN npm install
+# Install production dependencies.
+RUN npm install --only=production
 
-# Copy all files in the root to the root of the docker image
-COPY . .
+# Copy local code to the container image.
+COPY ./src ./
+COPY ./src/firebaseKey.json ./firebaseKey.json
 
-# The container will comunicate to the 8080 port
-EXPOSE 8080
-
-# When launch will execute the cmd node_modules/.bin/nodemon src/index.js
-CMD [ "node_modules/.bin/nodemon", "src/index.js" ]
+# Run the web service on container startup.
+CMD [ "node", "index.js" ]
