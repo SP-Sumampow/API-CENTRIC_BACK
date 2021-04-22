@@ -66,3 +66,5 @@ firebaseKey.json
 googleCloudKey.json
 /googleCloudKey.json
 /firebaseKey.json
+.DS_Store
+firebaseClientKey.json

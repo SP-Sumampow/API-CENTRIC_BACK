@@ -1,28 +1,30 @@
 /* eslint-disable max-len */
 const firebase = require('./firebaseConfig');
+require('firebase/auth')
 
-const decodeFirebaseIdToken = async (req, res, next) => {
-  if (!req.headers.id_token) {
-    return res.status(400).json({
-      error: {
-        message: 'You did not specify any idToken for this request',
-      },
-    });
+const decodeFirebaseIdToken = async (token) => {
+  if (!token) {
+    return  {
+      payload: null,
+      error: 'You did not specify any idToken for this request'
+    }
   }
 
   try {
     // Use firebase-admin auth to verify the token passed in from the client header.
     // This is token is generated from the firebase client
     // Decoding this token returns the userpayload and all the other token claims you added while creating the custom token
-    const userPayload = await firebase.auth().verifyIdToken(req.headers.id_token);
+    const userPayload = await firebase.client.auth().signInWithCustomToken(token);
 
-    req.user = userPayload;
-
-    next();
+    return  {
+      payload: userPayload,
+      error: null
+    }
   } catch (error) {
-    return res.status(500).json({
-      error,
-    });
+    return {
+      payload: null,
+      error: error
+    }
   }
 };
 

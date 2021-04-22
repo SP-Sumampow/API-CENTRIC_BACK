@@ -5,8 +5,9 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
-    "firebase": "^8.3.2",
+    "firebase": "^8.4.1",
     "firebase-admin": "^9.6.0"
   },
   "scripts": {
