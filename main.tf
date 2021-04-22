@@ -8,6 +8,31 @@ provider "google" {
 }
 
 
+resource "google_cloudbuild_trigger" "build-trigger" {
+
+  github {
+    name  = var.github_repository
+    owner = var.github_owner
+    push {
+      branch = var.github_branch
+    }
+  }
+
+  build {
+    step {
+      name = var.docker-nodejs-image
+
+      args    = []
+      timeout = "120s"
+    }
+
+
+    artifacts {
+      images = [var.docker-nodejs-image]
+    }
+  }
+}
+
 # Enables the Cloud Run API
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_service
 resource "google_project_service" "run_api" {
@@ -35,7 +60,7 @@ resource "google_cloud_run_service" "api_centric_nodejs" {
   }
 
   # Waits for the Cloud Run API to be enabled
-  depends_on = [google_project_service.run_api]
+  depends_on = [google_project_service.run_api, google_cloudbuild_trigger.build-trigger]
 }
 
 # Allow unauthenticated users to invoke the service

@@ -32,4 +32,14 @@ variable "docker-nodejs-image" {
   default = "eu.gcr.io/api-centric-web2/app-centric-node"
 }
 
+variable "github_repository" {
+  default = "API-CENTRIC_BACK"
+}
 
+variable "github_owner" {
+  default = "SP-Sumampow"
+}
+
+variable "github_branch" {
+  default = "^master$"
+}
