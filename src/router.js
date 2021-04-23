@@ -17,7 +17,7 @@ const init = (app) => {
 
   //Twit
   app.get('/tweet/:keyword', tweetController.getTweetFromKeyword);
-  app.get('/tweet/generateTweetAnalize', tweetController.generateTweetAnalize);
+  app.post('/tweet/generateTweetAnalyze', tweetController.generateTweetAnalyze);
 
   app.get('/', async (req, res) => {
     res.send('<h1>Projet cloud - Groupe 9 v1.0<h1>')

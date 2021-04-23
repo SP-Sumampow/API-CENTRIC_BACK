@@ -24,6 +24,7 @@ const signUp = async (req, res) => {
     .then(async (userRecord) => {
         const db = firebase.admin.firestore();
         await db.collection('users').doc(userRecord.uid).set({
+          uid: userRecord.uid,
           email: userRecord.email,
           isSubscribed: false,
         });

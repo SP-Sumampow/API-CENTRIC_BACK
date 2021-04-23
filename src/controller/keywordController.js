@@ -2,6 +2,7 @@
 const authMiddleware = require('../auth.middleware.js');
 const firebase = require('../firebaseConfig');
 const admin = require('firebase-admin');
+
 const postKeyword = async (req, res) => {
   const keyword = req.body.keyword;
     
@@ -47,17 +48,6 @@ const postKeyword = async (req, res) => {
     await db.collection('users').doc(uid).set({keywords}, {merge: true});
   
   }
-  
-
-  // await db.collection('users')
-  // .doc(uid)
-  // .then(function(querySnapshot) {
-  //   console.log(querySnapshot)
-  //   querySnapshot.forEach(function(doc) {
-  //     const data = doc.data()
-  //       console.log(data.keyword)
-  //   });
-  // })
 
 
   res.status(200).json({ "keyword": keyword});

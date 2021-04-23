@@ -1,0 +1,56 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+    </mj-attributes>
+    <mj-class name="border" border-bottom="2px solid red" />
+    <mj-font name="Raleway" href="https://fonts.googleapis.com/css?family=Raleway" />
+    <mj-font name="Nunito" href="https://fonts.googleapis.com/css?family=Nunito" />
+  </mj-head>
+  <mj-body background-color="#fff">
+    <mj-section>
+    	<mj-column>
+      	<mj-text align='center' color='purple'>
+        	<h1>Groupe5</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    
+    <mj-section>
+    	<mj-column>
+      	<mj-text align="left" color="purple">
+        	<h2>Bonjour {{compagnyName}},</h2>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    
+    <mj-section>
+    	<mj-column background-color= 'beige'>
+      	<mj-text>
+        	<h4>Voici votre rapport de cette semaine pour le mot clé {{keyword}}: </h4>
+          
+          <h3> Resultat positive {{nbPositive}}</h3>
+          <h3> Resultat Negative {{nbNegative}}</h3>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    
+    <mj-section>
+      <mj-column>
+      	<mj-text align='center'>
+        	<h4>Consultez votre compte pour pouvoir gérér votre resultat </h4>
+        </mj-text>
+        <mj-button background-color='purple'>voir mon compte</mj-button>
+      </mj-column>
+    </mj-section>
+    
+    
+   <mj-section>
+    <mj-column>
+     	<mj-text>
+      	<p>Cordialement,</p>
+        <h5 style='font-color:'purple';'>Votre équipe Groupe5</h5>
+      </mj-text>
+     </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
