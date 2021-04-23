@@ -13,7 +13,7 @@ variable "machine_types" {
 }
 
 variable "project" {
-  default = "api-centric-web2"
+  default = "api-centric-v3"
 }
 
 variable "credentials_file" {
@@ -29,7 +29,7 @@ variable "zone" {
 }
 
 variable "docker-nodejs-image" {
-  default = "eu.gcr.io/api-centric-web2/api-centric-node:latest"
+  default = "eu.gcr.io/api-centric-v3/api-centric-node:latest"
 }
 
 variable "github_repository" {

@@ -62,13 +62,10 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 .DS_Store
-<<<<<<< Updated upstream
 /src/firebaseAdminKey.json
 /src/firebaseClientKey.json
 /keys/.DS_Store
 /keys/googleCloudKey.json
 /src/controller/twiiter.js
-=======
->>>>>>> Stashed changes
 *.json
 /src/tweetKey.json
