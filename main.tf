@@ -94,6 +94,6 @@ resource "google_cloud_scheduler_job" "api-centric-generate-tweet-analyze" {
 
   http_target {
     http_method = "POST"
-    uri         = "https://${google_cloud_run_service.api_centric_nodejs.name}/tweet/generateTweetAnalize"
+    uri         = "${google_cloud_run_service.api_centric_nodejs.status[0].url}/tweet/generateTweetAnalize"
   }
 }
